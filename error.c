@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void serial_error(const char* fname);
-
 /******************************************************************************
  * Report error related to serial port read/write etc
  ******************************************************************************/
