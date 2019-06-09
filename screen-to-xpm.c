@@ -77,9 +77,9 @@ int main(int argc, char **argv)
 	if (argc != 1)
 	{
 		fprintf(stderr,
-			"Converts monochrom CASIO FX-9850 screen dumps to XPM images.\n"
-			"Reads screen dump from stdin and outputs XPM to stdout\n"
-			"Also prints information and warning messages to stderr when necessary\n"
+			"Converts CASIO (C)FX-9850 screen dumps to XPM images.\n"
+			"Reads raw screen dump packets from stdin and outputs XPM to stdout\n"
+			"Information and warning messages printed to stderr when necessary\n"
 			"\n"
 			"Syntax: %s < screen.dump > screen.xpm\n", argv[0]);
 		return 1;
@@ -122,16 +122,14 @@ int main(int argc, char **argv)
 
 	/* Tasty! A hard-coded XPM header! */
 	printf(	"/* XPM */\n"
-			"static char *Pic_colors[] = {\n"
-			"	\"%d %d 4 1\"\n"
-			"	\"B c #000033\"\n"
-			"	\"G c #005555\"\n"
-			"	\"R c #FF6633\"\n"
-			"	\"0 c #FFFFFF\"\n"
-			"};\n"
-			"static char *Pic_pixels[] = {\n",IMAGE_WIDTH,IMAGE_HEIGHT
+			"static char *casio_screenshot[] = {\n"
+			"	\"%d %d 4 1\",\n"
+			"	\"B c #000033\",\n"
+			"	\"G c #005555\",\n"
+			"	\"R c #FF6633\",\n"
+			"	\"0 c #FFFFFF\",\n",
+			IMAGE_WIDTH,IMAGE_HEIGHT
 	);
-
 
 	for (y = 0; y < IMAGE_HEIGHT; y++)
 	{
@@ -145,7 +143,7 @@ int main(int argc, char **argv)
 
 
 	/* Hard-coded XPM footer */
-	printf("\"};");
+	printf("};");
 
 	return 0;
 }
